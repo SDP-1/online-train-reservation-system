@@ -45,5 +45,34 @@ public class TrainUtil {
 
 		return trains;
 	}
+	
+	
+	public static String getTrainName(int id) {
+		
+		String trainName = null;
+		
+		try {
+			connection = DBConnectionUtil.getDBConnection();
+			statement = connection.createStatement();
+			
+			String sql = "Select name from train where id = "+id;
+
+			ResultSet resultSet = statement.executeQuery(sql);
+			
+			if (resultSet.next()) {
+				trainName = resultSet.getString("name");
+			}
+			
+			
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return trainName;
+	}
 
 }
