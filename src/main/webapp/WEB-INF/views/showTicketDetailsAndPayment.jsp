@@ -1,3 +1,4 @@
+<%@page import="util.TrainSheduleUtil"%>
 <%@page import="util.TrainUtil"%>
 <%@page import="model.TicketDetails"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -33,7 +34,12 @@
 <style>
 /* Custom CSS */
 body {
-	background-color: #f5f5f5;
+	background-image:
+		url('https://seatreservation.railway.gov.lk/mtktwebslr/gallery/gallery-2.jpg');
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	opacity: 0.9; /* Adjust the opacity as needed */
 }
 
 .ticket-details-container {
@@ -178,6 +184,22 @@ body {
 					<p><%=ticketDetails.getPassenger_count()%></p>
 				</div>
 			</div>
+			<div class="row">
+				<div class="col-md-6">
+					<p class="ticket-details-label">Unit price:</p>
+				</div>
+				<div class="col-md-6">
+					<p><%=TrainSheduleUtil.getTicketPrice(ticketDetails.getStart_point(),ticketDetails.getEnd_point()) %></p>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-6">
+					<p class="ticket-details-label">Total price:</p>
+				</div>
+				<div class="col-md-6">
+					<p><%=(TrainSheduleUtil.getTicketPrice(ticketDetails.getStart_point(),ticketDetails.getEnd_point()))*ticketDetails.getPassenger_count() %></p>
+				</div>
+			</div>
 		</div>
 	</div>
 
@@ -224,13 +246,24 @@ body {
 				<div class="modal-body">Congratulations! Your payment was
 					successful. Your e-tickets have been generated.</div>
 				<div class="modal-footer">
-					<button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+					<button type="button" class="btn btn-primary" data-dismiss="modal"> OK </button>
 				</div>
 			</div>
 		</div>
 	</div>
 
 	<script>
+	
+	// Add a click event listener to the "Close" button within the modal
+	document.querySelector('#successModal .modal-footer button').addEventListener('click', function() {
+	    // Close the modal
+	    $('#successModal').modal('hide');
+	    
+	    // Redirect to the login page after closing the modal
+	    window.location.href = "https://example.com/login-page.html";       <!------------------------->
+	});
+
+	
 		var stripe = Stripe('pk_test_XXXXXXXXXXXXXXXXXXXXXXXX'); // Replace with your actual Stripe public key
 		var elements = stripe.elements();
 
@@ -260,11 +293,83 @@ body {
 		form.addEventListener('submit', function(event) {
 			event.preventDefault();
 			
+			paceRecervation();
 			 $('#successModal').modal('show');
 			<!--alert("Payment successful!");-->
 
 			<!-- window.location.href = "https://example.com/success-page.html"; -->
 		});
+		
+		
+		function placeReservation() {
+		    var form = document.createElement('form');
+		    form.action = '/PlaceReservationServlet'; // Replace with the actual servlet URL
+		    form.method = 'POST';
+
+		 // Create hidden input fields for the ticket details
+		 
+		 	var trainNumberInput = document.createElement('input');
+		    trainNumberInput.type = 'hidden';
+		    trainNumberInput.name = 'train_number';
+		    trainNumberInput.value = '1234';
+		    form.appendChild(trainNumberInput);
+		 
+		    var trainNumberInput = document.createElement('input');
+		    trainNumberInput.type = 'hidden';
+		    trainNumberInput.name = 'train_number';
+		    trainNumberInput.value = '<%= ticketDetails.getTrain_number() %>';
+		    form.appendChild(trainNumberInput);
+
+		    var trainNameInput = document.createElement('input');
+		    trainNameInput.type = 'hidden';
+		    trainNameInput.name = 'train_name';
+		    trainNameInput.value = '<%= TrainUtil.getTrainName(ticketDetails.getTrain_number()) %>';
+		    form.appendChild(trainNameInput);
+
+		    var startPointInput = document.createElement('input');
+		    startPointInput.type = 'hidden';
+		    startPointInput.name = 'start_point';
+		    startPointInput.value = '<%= ticketDetails.getStart_point() %>';
+		    form.appendChild(startPointInput);
+
+		    var endPointInput = document.createElement('input');
+		    endPointInput.type = 'hidden';
+		    endPointInput.name = 'end_point';
+		    endPointInput.value = '<%= ticketDetails.getEnd_point() %>';
+		    form.appendChild(endPointInput);
+
+		    var reservationDateInput = document.createElement('input');
+		    reservationDateInput.type = 'hidden';
+		    reservationDateInput.name = 'reservation_date';
+		    reservationDateInput.value = '<%= ticketDetails.getReservation_date() %>';
+		    form.appendChild(reservationDateInput);
+
+		    var passengerCountInput = document.createElement('input');
+		    passengerCountInput.type = 'hidden';
+		    passengerCountInput.name = 'passenger_count';
+		    passengerCountInput.value = '<%= ticketDetails.getPassenger_count() %>';
+		    form.appendChild(passengerCountInput);
+
+		    var unitPriceInput = document.createElement('input');
+		    unitPriceInput.type = 'hidden';
+		    unitPriceInput.name = 'unit_price';
+		    unitPriceInput.value = '<%= TrainSheduleUtil.getTicketPrice(ticketDetails.getStart_point(),ticketDetails.getEnd_point()) %>';
+		    form.appendChild(unitPriceInput);
+
+		    var totalPriceInput = document.createElement('input');
+		    totalPriceInput.type = 'hidden';
+		    totalPriceInput.name = 'total_price';
+		    totalPriceInput.value = '<%= (TrainSheduleUtil.getTicketPrice(ticketDetails.getStart_point(),ticketDetails.getEnd_point())) * ticketDetails.getPassenger_count() %>';
+		    form.appendChild(totalPriceInput);
+		    
+		    
+
+		    // Append the form to the document and submit it
+		    document.body.appendChild(form);
+		    form.submit();
+		}
+		
+		
 	</script>
 
 	<!-- Include Bootstrap JS and MDB JS here -->

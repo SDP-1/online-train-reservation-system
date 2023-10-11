@@ -8,6 +8,8 @@ public class TicketDetails {
 	private int passenger_count;
 	private double price;
 	
+	public TicketDetails() {}
+	
 	public TicketDetails(int train_number, String start_point, String end_point, String reservation_date,
 			int passenger_count) {
 		super();
