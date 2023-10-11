@@ -13,6 +13,68 @@ public class ReservationUtil {
 
 	private static Connection connection;
 	private static Statement statement;
+	
+	 public static void addNewReservation(Reservation reservation) {
+	        Connection connection = null;
+	        PreparedStatement preparedStatement = null;
+
+	        try {
+	        	connection = DBConnectionUtil.getDBConnection();
+	        	statement = connection.createStatement();
+
+	            // Generate a new reservation number
+	            int reservationNumber = getNewRecervationNumber();
+
+	            // SQL INSERT statement
+	            String sql = "INSERT INTO reservation (reservationId, userId, trainNumber, startPoint, endPoint, reservationDate, passengerCount, unitPrice, totalPrice, reservationPlaceDate) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, NOW())";
+
+
+	            // Create a prepared statement
+	            preparedStatement = connection.prepareStatement(sql);
+
+	            // Set the values for the placeholders in the SQL statement
+	            preparedStatement.setInt(1, reservationNumber);
+	            preparedStatement.setInt(2, reservation.getUserid());
+		        preparedStatement.setInt(3, reservation.getTrain_number());
+//		        preparedStatement.setString(3, reservation.getTrainName());
+		        preparedStatement.setString(4, reservation.getStart_point());
+		        preparedStatement.setString(5, reservation.getEnd_point());
+		        preparedStatement.setString(6, reservation.getReservation_date());
+		        preparedStatement.setInt(7, reservation.getPassenger_count());
+		        preparedStatement.setDouble(8, reservation.getUnitPrice());
+		        preparedStatement.setDouble(9, reservation.getTotalPrice());
+
+	            // Execute the INSERT statement
+	            int rowsInserted = preparedStatement.executeUpdate();
+	            
+	            TrainUtil.decreaseSheetCount(reservation.getTrain_number(),reservation.getPassenger_count());
+
+	            if (rowsInserted > 0) {
+	                // The reservation was successfully inserted
+	                System.out.println("Reservation successfully placed.");
+	            } else {
+	                // An error occurred during the insertion
+	                System.err.println("Failed to insert reservation.");
+	            }
+	        } catch (SQLException e) {
+	            e.printStackTrace();
+	        } catch (ClassNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} finally {
+	            // Close resources
+	            try {
+	                if (preparedStatement != null) {
+	                    preparedStatement.close();
+	                }
+	                if (connection != null) {
+	                    connection.close();
+	                }
+	            } catch (SQLException e) {
+	                e.printStackTrace();
+	            }
+	        }
+	    }
 
 	public static ArrayList<Reservation> getReservationHistoryOfUser(int idOfUser) {
 

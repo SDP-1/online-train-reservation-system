@@ -246,22 +246,13 @@ body {
 				<div class="modal-body">Congratulations! Your payment was
 					successful. Your e-tickets have been generated.</div>
 				<div class="modal-footer">
-					<button type="button" class="btn btn-primary" data-dismiss="modal"> OK </button>
+					<button type="button" class="btn btn-primary" data-dismiss="modal" onclick="placeReservation()"> OK </button>
 				</div>
 			</div>
 		</div>
 	</div>
 
 	<script>
-	
-	// Add a click event listener to the "Close" button within the modal
-	document.querySelector('#successModal .modal-footer button').addEventListener('click', function() {
-	    // Close the modal
-	    $('#successModal').modal('hide');
-	    
-	    // Redirect to the login page after closing the modal
-	    window.location.href = "https://example.com/login-page.html";       <!------------------------->
-	});
 
 	
 		var stripe = Stripe('pk_test_XXXXXXXXXXXXXXXXXXXXXXXX'); // Replace with your actual Stripe public key
@@ -293,8 +284,9 @@ body {
 		form.addEventListener('submit', function(event) {
 			event.preventDefault();
 			
-			paceRecervation();
-			 $('#successModal').modal('show');
+			$('#successModal').modal('show');
+			
+			 
 			<!--alert("Payment successful!");-->
 
 			<!-- window.location.href = "https://example.com/success-page.html"; -->
@@ -303,16 +295,16 @@ body {
 		
 		function placeReservation() {
 		    var form = document.createElement('form');
-		    form.action = '/PlaceReservationServlet'; // Replace with the actual servlet URL
+		    form.action = 'PlaceReservation'; // Replace with the actual servlet URL
 		    form.method = 'POST';
 
 		 // Create hidden input fields for the ticket details
 		 
-		 	var trainNumberInput = document.createElement('input');
-		    trainNumberInput.type = 'hidden';
-		    trainNumberInput.name = 'train_number';
-		    trainNumberInput.value = '1234';
-		    form.appendChild(trainNumberInput);
+		 	var userIdInput = document.createElement('input');
+		 	userIdInput.type = 'hidden';
+		 	userIdInput.name = 'userId';
+		    userIdInput.value = '1234';
+		    form.appendChild(userIdInput);
 		 
 		    var trainNumberInput = document.createElement('input');
 		    trainNumberInput.type = 'hidden';
@@ -361,8 +353,6 @@ body {
 		    totalPriceInput.name = 'total_price';
 		    totalPriceInput.value = '<%= (TrainSheduleUtil.getTicketPrice(ticketDetails.getStart_point(),ticketDetails.getEnd_point())) * ticketDetails.getPassenger_count() %>';
 		    form.appendChild(totalPriceInput);
-		    
-		    
 
 		    // Append the form to the document and submit it
 		    document.body.appendChild(form);

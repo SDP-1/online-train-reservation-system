@@ -9,6 +9,10 @@ public class Reservation extends TicketDetails{
 	private double unitPrice;
 	private double totalPrice;
 	
+	public Reservation() {
+		// TODO Auto-generated constructor stub
+	}
+	
 	public Reservation(int train_number, String start_point, String end_point, String reservation_date,
 			int passenger_count, int recervationNo, int userid, String reservationPlaceDate, double unitPrice,
 			double totalPrice) {

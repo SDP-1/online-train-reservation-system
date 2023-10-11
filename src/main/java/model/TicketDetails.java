@@ -7,7 +7,8 @@ public class TicketDetails {
 	private String reservation_date;
 	private int passenger_count;
 	private double price;
-	
+	private String trainName;
+
 	public TicketDetails() {}
 	
 	public TicketDetails(int train_number, String start_point, String end_point, String reservation_date,
@@ -29,6 +30,14 @@ public class TicketDetails {
 		this.reservation_date = reservation_date;
 		this.passenger_count = passenger_count;
 		this.price = price;
+	}
+	
+	public String getTrainName() {
+		return trainName;
+	}
+
+	public void setTrainName(String trainName) {
+		this.trainName = trainName;
 	}
 
 	public int getTrain_number() {
