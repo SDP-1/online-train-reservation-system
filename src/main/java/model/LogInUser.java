@@ -15,7 +15,11 @@ public class LogInUser {
 		return userID;
 	}
 	
+	public static void logOutUser() {
+		userID = 0;
+	}
+	
 	static{
-		userID=0;
+		userID=1234;
 	}
 }

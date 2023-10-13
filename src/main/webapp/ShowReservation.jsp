@@ -1,3 +1,4 @@
+<%@page import="model.LogInUser"%>
 <%@page import="util.ReservationUtil"%>
 <%@page import="model.Reservation"%>
 <%@page import="java.util.ArrayList"%>
@@ -22,17 +23,23 @@
 	href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.2/mdb.min.css"
 	rel="stylesheet" />
 
-<!-- Internal CSS -->
-<link rel="stylesheet" href="CSS\home-page-style.css">
 
-<!-- Include jQuery -->
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<!-- jQuery -->
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+
+<!-- Popper.js (required for Bootstrap) -->
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 
 <!-- Include Bootstrap CSS and MDB CSS -->
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.2/css/mdb.min.css">
+	
+	<!-- Internal CSS -->
+<link rel="stylesheet" href="CSS\home-page-style.css">
+	
 <style>
 body {
 	background-image:
@@ -127,11 +134,74 @@ body {
 						<li><a class="dropdown-item" href="#">My profile</a></li>
 						<li><a class="dropdown-item" href="ShowReservation.jsp">My
 								Reservation</a></li>
-						<li><a class="dropdown-item" href="#">Logout</a></li>
+						<li><a class="dropdown-item" href="#" id="logout-button">Logout</a>
+						</li>
 					</ul>
 				</div>
 			</div>
 			<!-- Right elements -->
+			
+			<!-- log out conformation model -->
+			<div class="modal" tabindex="-1" role="dialog" id="logoutModal">
+				<div class="modal-dialog" role="document">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h5 class="modal-title">Logout Confirmation</h5>
+							<button type="button" class="close" id='close'
+								data-dismiss="modal" aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							</button>
+						</div>
+						<div class="modal-body">
+							<p>Are you sure you want to log out?</p>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-secondary"
+								data-dismiss="modal" id="cancel-logout">Cancel</button>
+							<button type="button" class="btn btn-primary" id="confirm-logout">Yes</button>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<!-- log out conformation model end -->
+
+			<!-- log out conformation model JS -->
+			<script>
+				// When the Logout button is clicked, show the confirmation modal
+				document.getElementById('logout-button').addEventListener(
+						'click', function() {
+							$('#logoutModal').modal('show');
+						});
+
+				// When the confirmation modal's Yes button is clicked, log out and redirect
+				document.getElementById('confirm-logout').addEventListener(
+						'click', function() {
+							var form = document.createElement('form');
+						    form.action = 'LogOutServlet'; // Replace with the actual servlet URL
+						    form.method = 'POST';
+
+						    // Append the form to the document and submit it
+						    document.body.appendChild(form);
+						    form.submit();
+							
+						});
+
+				document.getElementById('close').addEventListener('click',
+						function() {
+							$('#logoutModal').modal('hide');
+						});
+
+				document.getElementById('cancel-logout').addEventListener(
+						'click', function() {
+							$('#logoutModal').modal('hide');
+						});
+			</script>
+			<!-- log out conformation model JS end -->
+			
+			
+			
+			
 
 		</div>
 		<!-- Container wrapper -->
@@ -148,7 +218,7 @@ body {
 		<h1 class="text-center">My Reservations</h1>
 		<div class="row">
 			<%
-			ArrayList<Reservation> reservations = ReservationUtil.getReservationHistoryOfUser(1234);
+			ArrayList<Reservation> reservations = ReservationUtil.getReservationHistoryOfUser(LogInUser.getUserId());
 			for (Reservation reservation : reservations) {
 			%>
 			<div class="col-md-4">

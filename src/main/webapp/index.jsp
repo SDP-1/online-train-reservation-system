@@ -1,3 +1,4 @@
+<%@page import="model.LogInUser"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
@@ -23,6 +24,12 @@
 <!-- internal CSS -->
 <link rel="stylesheet" href="CSS\home-page-style.css">
 
+<script type="text/javascript">
+if(<%= LogInUser.getUserId()%> > 0){
+	var newPageURL = 'indexLogInUser.jsp'; 
+    window.location.href = newPageURL;
+}
+</script>
 
 </head>
 
