@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import model.LogInUser;
 import model.TicketDetails;
 
 /**
@@ -48,8 +49,13 @@ public class showTicketDetailsAndPaymentServlet extends HttpServlet {
 
 		TicketDetails ticketDetails = new TicketDetails(trainNumber, startPoint, endPoint, reservationDate,
 				passengerCount);
-
-		RequestDispatcher dispatcher = getServletContext() .getRequestDispatcher("/WEB-INF/views/showTicketDetailsAndPayment.jsp");
+		
+		RequestDispatcher dispatcher=null;
+		if(LogInUser.getUserId() > 0) {
+		 dispatcher = getServletContext() .getRequestDispatcher("/WEB-INF/views/showTicketDetailsAndPayment.jsp");
+		}else {
+			 //redirec to the login page
+		}
 
 		request.setAttribute("ticketDetails", ticketDetails);
 		dispatcher.forward(request, response);

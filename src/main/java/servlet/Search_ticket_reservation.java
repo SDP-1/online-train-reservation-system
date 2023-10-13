@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import model.LogInUser;
 import model.ReservationSearch;
 
 /**
@@ -45,8 +46,13 @@ public class Search_ticket_reservation extends HttpServlet {
 		
 //		List<ReservationSearch> search = new ArrayList<>();
 //		search.add(reservationSearch);
+		RequestDispatcher dispatcher;
 		
-		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/WEB-INF/views/showAvailableTrains.jsp");
+		if(LogInUser.getUserId() > 0) {
+			 dispatcher = getServletContext().getRequestDispatcher("/WEB-INF/views/showAvailableTrainsLogInUser.jsp");
+		}else {
+			dispatcher = getServletContext().getRequestDispatcher("/WEB-INF/views/showAvailableTrains.jsp");
+		}
 		
 		request.setAttribute("reservationSearch", reservationSearch);
 		dispatcher.forward(request, response);

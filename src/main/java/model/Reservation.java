@@ -13,6 +13,22 @@ public class Reservation extends TicketDetails{
 		// TODO Auto-generated constructor stub
 	}
 	
+	public Reservation(int recervationNo,int userId,int trainNumber,String startPoint,String endPoint,String reservation_date,int passenger_count,double unitPrice,double totalPrice,String reservationPlaceDate,String trainName) {
+		this.recervationNo = recervationNo;
+		this.userid = userId;
+		this.reservationPlaceDate = reservationPlaceDate;
+		this.unitPrice = unitPrice;
+		this.totalPrice = totalPrice;
+		
+		super.setTrain_number(trainNumber);
+		super.setStart_point(startPoint);
+		super.setEnd_point(endPoint);
+		super.setReservation_date(reservation_date);
+		super.setPassenger_count(passenger_count);
+		super.setTrainName(trainName);
+		
+	}
+
 	public Reservation(int train_number, String start_point, String end_point, String reservation_date,
 			int passenger_count, int recervationNo, int userid, String reservationPlaceDate, double unitPrice,
 			double totalPrice) {

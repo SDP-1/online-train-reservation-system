@@ -67,11 +67,13 @@ public class PlaceReservation extends HttpServlet {
 
 		ReservationUtil.addNewReservation(reservation);
 		
+		String contextPath = request.getContextPath();
+        response.sendRedirect(contextPath + "/ShowReservation.jsp");
 
-		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/index.jsp");
-
-		request.setAttribute("reservation", reservation);
-		dispatcher.forward(request, response);
+//		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/index.jsp");
+//
+//		request.setAttribute("reservation", reservation);
+//		dispatcher.forward(request, response);
 
 	}
 
