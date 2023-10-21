@@ -375,7 +375,7 @@
 						</div>
 
 						<div class="form-check form-switch"
-							style="margin-top: 40px; margin-left: 20%;">
+							style="margin-top: 40px; margin-left: 20%; display: none;">
 							<input class="form-check-input" type="checkbox" role="switch"
 								id="flexSwitchCheckDefault" name="flexSwitchCheckDefault">
 							<label class="form-check-label" for="flexSwitchCheckDefault">Return</label>
@@ -510,7 +510,7 @@
 		<div class="contact-form-container"
 			style="display: flex; justify-content: center;">
 			<div style="width: 70%;">
-				<form class="contact-form">
+				<form class="contact-form" action="SaveContactUsServlet" method="post">
 					<div class="mb-3">
 						<label for="yourName" class="form-label">Your Name</label> <input
 							type="text" class="form-control" id="yourName"

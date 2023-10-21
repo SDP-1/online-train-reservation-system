@@ -1,7 +1,5 @@
 package model;
 
-import org.eclipse.jdt.internal.compiler.ast.ThisReference;
-
 public class LogInUser {
 	
 	private static int userID;
