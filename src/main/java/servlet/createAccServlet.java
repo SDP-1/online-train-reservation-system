@@ -13,7 +13,7 @@ import util.customerDBUtil;
 
 
 
-@WebServlet("/customerInsert")
+@WebServlet("/createAccServlet")
 public class createAccServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
