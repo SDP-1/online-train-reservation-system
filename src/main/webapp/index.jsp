@@ -7,7 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Document</title>
+<title>home page</title>
 <!-- Font Awesome -->
 <link
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
@@ -23,11 +23,6 @@
 
 <!-- internal CSS -->
 <link rel="stylesheet" href="CSS\home-page-style.css">
-
-
-
-
-
 
 </head>
 <script type="text/javascript">
@@ -728,9 +723,6 @@
 	<!-- internal Java Script Code -->
 	<script type="text/javascript" src="JS\home-page-script.js"></script>
 
-	<!-- link date picker JS file -->
-	<script type="" src="JS\datePicker-script.js"></script>
-	<script type="" src="JS\datePicker2-script.js"></script>
 
 
 
