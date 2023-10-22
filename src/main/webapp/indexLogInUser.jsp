@@ -375,7 +375,7 @@
 						</div>
 
 						<div class="form-check form-switch"
-							style="margin-top: 40px; margin-left: 20%; display: none;">
+							style="margin-top: 40px; margin-left: 20%;">
 							<input class="form-check-input" type="checkbox" role="switch"
 								id="flexSwitchCheckDefault" name="flexSwitchCheckDefault">
 							<label class="form-check-label" for="flexSwitchCheckDefault">Return</label>
@@ -513,22 +513,22 @@
 				<form class="contact-form" action="SaveContactUsServlet" method="post">
 					<div class="mb-3">
 						<label for="yourName" class="form-label">Your Name</label> <input
-							type="text" class="form-control" id="yourName"
+							type="text" class="form-control" id="yourName" name="yourName"
 							placeholder="Your Name" required>
 					</div>
 					<div class="mb-3">
 						<label for="yourEmail" class="form-label">Your Email</label> <input
-							type="email" class="form-control" id="yourEmail"
+							type="email" class="form-control" id="yourEmail" name="yourEmail"
 							placeholder="Your Email" required>
 					</div>
 					<div class="mb-3">
 						<label for="yourMobile" class="form-label">Your Mobile</label> <input
-							type="tel" class="form-control" id="yourMobile"
+							type="tel" class="form-control" id="yourMobile" name="yourMobile"
 							placeholder="Your Mobile" required>
 					</div>
 					<div class="mb-3">
 						<label for="subject" class="form-label">Subject</label> <select
-							class="form-select" id="subject" required>
+							class="form-select" id="subject" name="subject" required>
 							<option value="" disabled selected>Select Complaint
 								Subject</option>
 							<option value="technical">Technical Issue</option>
@@ -538,7 +538,7 @@
 					</div>
 					<div class="mb-3">
 						<label for="message" class="form-label">Message</label>
-						<textarea class="form-control" id="message" rows="5"
+						<textarea class="form-control" id="message" name="message" rows="5"
 							placeholder="Your Message" required></textarea>
 					</div>
 					<button type="submit" class="btn btn-primary">Send</button>

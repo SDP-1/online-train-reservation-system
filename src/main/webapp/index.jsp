@@ -24,15 +24,20 @@
 <!-- internal CSS -->
 <link rel="stylesheet" href="CSS\home-page-style.css">
 
-<script type="text/javascript">
-if(<%= LogInUser.getUserId()%> > 0){
-	var newPageURL = 'indexLogInUser.jsp'; 
-    window.location.href = newPageURL;
-}
-</script>
+
+
+
+
 
 </head>
-
+<script type="text/javascript">
+	if (
+<%=LogInUser.getUserId()%>
+	> 0) {
+		var newPageURL = 'indexLogInUser.jsp';
+		window.location.href = newPageURL;
+	}
+</script>
 <body>
 
 	<!-- Navbar -->
@@ -71,8 +76,9 @@ if(<%= LogInUser.getUserId()%> > 0){
 					<li class="nav-item"><a class="nav-link" href="#"
 						onclick="scrollToBookSeatSection('contact_us-section')">Contact
 							Us</a></li>
-					<li class="nav-item"><a class="nav-link" href="#" onclick="scrollToBookSeatSection('Terms-and-Conditions')">Terms &
-							Conditions</a></li>
+					<li class="nav-item"><a class="nav-link" href="#"
+						onclick="scrollToBookSeatSection('Terms-and-Conditions')">Terms
+							& Conditions</a></li>
 				</ul>
 				<!-- Left links -->
 			</div>
@@ -84,10 +90,11 @@ if(<%= LogInUser.getUserId()%> > 0){
 				<!-- log in options -->
 
 				<div class="d-flex align-items-center">
-					<button type="button" class="btn btn-link px-3 me-2">
-						Login</button>
-					<button type="button" class="btn btn-primary me-3">Sign up
-						for free</button>
+					<button type="button" class="btn btn-link px-3 me-2"
+						onclick="window.location.href = 'login.jsp'">Login</button>
+					<button type="button" class="btn btn-primary me-3"
+						onclick="window.location.href = 'createAccount.jsp'">Sign up for
+						free</button>
 				</div>
 
 
@@ -277,11 +284,11 @@ if(<%= LogInUser.getUserId()%> > 0){
 							</div>
 						</div>
 
-						<div class="form-check form-switchy
-							style="margin-top: 40px; margin-left: 20%; display: none;">
+						<div class="form-check form-switch"
+							style="margin-top: 40px; margin-left: 20%;">
 							<input class="form-check-input" type="checkbox" role="switch"
 								id="flexSwitchCheckDefault" name="flexSwitchCheckDefault">
-							<label class="form-check-label" for="flexSwitchCheckDefault" >Return</label>
+							<label class="form-check-label" for="flexSwitchCheckDefault">Return</label>
 						</div>
 
 						<div id="datePickerContainer" class="form-component"
@@ -413,25 +420,26 @@ if(<%= LogInUser.getUserId()%> > 0){
 		<div class="contact-form-container"
 			style="display: flex; justify-content: center;">
 			<div style="width: 70%;">
-				<form class="contact-form" action="SaveContactUsServlet" method="post">
+				<form class="contact-form" action="SaveContactUsServlet"
+					method="post">
 					<div class="mb-3">
 						<label for="yourName" class="form-label">Your Name</label> <input
-							type="text" class="form-control" id="yourName"
+							type="text" class="form-control" id="yourName" name="yourName"
 							placeholder="Your Name" required>
 					</div>
 					<div class="mb-3">
 						<label for="yourEmail" class="form-label">Your Email</label> <input
-							type="email" class="form-control" id="yourEmail"
+							type="email" class="form-control" id="yourEmail" name="yourEmail"
 							placeholder="Your Email" required>
 					</div>
 					<div class="mb-3">
 						<label for="yourMobile" class="form-label">Your Mobile</label> <input
-							type="tel" class="form-control" id="yourMobile"
+							type="tel" class="form-control" id="yourMobile" name="yourMobile"
 							placeholder="Your Mobile" required>
 					</div>
 					<div class="mb-3">
 						<label for="subject" class="form-label">Subject</label> <select
-							class="form-select" id="subject" required>
+							class="form-select" id="subject" name="subject" required>
 							<option value="" disabled selected>Select Complaint
 								Subject</option>
 							<option value="technical">Technical Issue</option>
@@ -441,8 +449,8 @@ if(<%= LogInUser.getUserId()%> > 0){
 					</div>
 					<div class="mb-3">
 						<label for="message" class="form-label">Message</label>
-						<textarea class="form-control" id="message" rows="5"
-							placeholder="Your Message" required></textarea>
+						<textarea class="form-control" id="message" name="message"
+							rows="5" placeholder="Your Message" required></textarea>
 					</div>
 					<button type="submit" class="btn btn-primary">Send</button>
 				</form>
@@ -451,187 +459,270 @@ if(<%= LogInUser.getUserId()%> > 0){
 		</div>
 
 	</section>
-	
-	
+
+
 	<!-- thems and conditions -->
 	<section id="Terms-and-Conditions">
-	
+
 		<h1 class="display-5"
-			style="margin-top: 50px; margin-left: 12%; margin-bottom: 2%;">Terms & Conditions</h1>
+			style="margin-top: 50px; margin-left: 12%; margin-bottom: 2%;">Terms
+			& Conditions</h1>
 
 		<div style="display: flex; justify-content: center;">
 			<div style="width: 70%;">
-				 <div class="container">
-        <h1>Terms and Conditions</h1>
-        <div class="section">
-            <h2>GENERAL TERMS AND CONDITIONS APPLICABLE FOR USE OF THE ONLINE SEAT RESERVATION SERVICE OF SRI LANKA RAILWAYS.</h2>
-            <p>
-                01. Prior to making a reservation through the Service, you are strongly advised to be vigilant of the following guidelines and comply with the same;
-            </p>
-            <p>Select the correct train for your journey.</p>
-            <p>Fix a convenient date for both up & down journeys.</p>
-            <p>Ensure that you have a thorough understanding of the rates applicable.</p>
-            <p>Maximum of 5 seats could be reserved at once.</p>
-            <p>Standard customer verification and other terms and conditions would apply.</p>
-            <p>NIC numbers of each and every passenger except "DEPENDENT" should be furnished.</p>
-            <p>A reference number along with ticket details will be sent via email to commuters who make the reservation via website and/or mobile app.</p>
-            <p>Commuters are requested to present the booking reference number for ticket printing purposes and notify any enquiries related to their reservation to the railway officer at the counters. Tickets can be printed at any existing ticket printing location of Sri Lanka Railways (Please click Ticket printing locations tab) and it is recommended to get printed the ticket in advance.</p>
-            <p>Passengers must provide the booking reference number along with their NIC or passport in person at the Station Counter and ticket will not be issued to any third party.</p>
-            <p>A reservation only becomes guaranteed once full payment has been received by Sri Lanka Railways.</p>
-            <p>No fresh tickets will be issued in lieu of misplaced or lost tickets.</p>
-            <p>The reserved tickets could be used only for specified trains.</p>
-            <p>Travelling on any other trains by using these types of tickets are strictly prohibited. An ordinary travelling ticket should be purchased for travelling to a transits station to catch a reserved train.</p>
-            <p>All tickets issued through the Service are the property of Sri Lanka Railways. Tickets are non-transferable and should be handed over to the destination station before leaving the station after the journey. Sri Lanka Railways officers have the authority to request and check the tickets at any given moment.</p>
-        </div>
-        <div class="section">
-            <h2>PAYMENT METHODS</h2>
-            <p>You should use a valid VISA or Master Credit/ Debit card when making online reservations through the internet.</p>
-            <h3>Debit/Credit Card, Bank Account Details:</h3>
-            <p>You agree that the debit/credit card details provided by you for use of the Sri Lanka Railways online seat reservation service is correct and accurate and you shall not use a Debit/ credit card, that is not lawfully owned by you or the use of which is not authorized by the lawful owner thereof. You further agree and undertake to provide correct and valid debit/credit card details.</p>
-            <p>You agree, understand and confirm that your personal data including without limitation details relating to debit card/ credit card transmitted over the Internet may be susceptible to misuse, hacking, theft and/ or fraud and the Sri Lanka Railways or your Payment Service Provider(s) have no control over such matters.</p>
-            <p>The Sri Lanka Railways (including its service providers and suppliers), the Payment Service Provider(s) and its affiliates and associates shall not be liable, at any time, for any failure of performance, error, omission, interruption, deletion, defect, delay in operation or transmission, computer virus, communications line failure, theft or destruction or unauthorized access to, alteration of, or use of information contained on the Website.</p>
-            <p>You warrant, agree and confirm the following when you initiate a payment transaction through the Service and/or issue an online payment instruction and/or provide your card / bank details:</p>
-            <ul>
-                <li>You are fully and lawfully entitled to use such credit / debit card, bank account for such transactions.</li>
-                <li>You are responsible to ensure that the card/ bank account details provided by you are accurate.</li>
-                <li>You authorize debit of the nominated card/ bank account for the payment of fees selected by you.</li>
-                <li>You are responsible to ensure that sufficient credit is available on the nominated card/ bank account at the time of making the payment to permit the payment of the dues payable or fees selected by you.</li>
-                <li>You are responsible for all transactions performed utilizing your credit/debit card and/or bank account.</li>
-            </ul>
-            <p>Server Slow Down/Session Timeout: In case the Website or Payment Service Provider’s webpage, that is linked to the Website, is experiencing any server related issues like 'slow down' or 'failure' or 'session timeout', you shall, before initiating the second payment, check whether your bank account has been debited or not and accordingly resort to one of the following options:</p>
-            <ul>
-                <li>In case the bank account appears to be debited, ensure that you do not make the payment twice and immediately thereafter contact the Sri Lanka Railways via e-mail or any other mode of contact as provided by the Sri Lanka Railways to confirm payment.</li>
-                <li>In case the Bank Account is not debited, you may initiate a fresh transaction to make payment.</li>
-            </ul>
-            <p>However, you agree that under no circumstances the Payment Gateway Service Provider shall be held responsible for such fraudulent/duplicate transactions and hence no claims should be raised to Payment Gateway Service Provider. No communication received by the Payment Service Provider(s) in this regards shall be entertained by the Payment Service Provider(s).</p>
-        </div>
-        <!-- Add more sections as needed -->
-    </div>
+				<div class="container">
+					<h1>Terms and Conditions</h1>
+					<div class="section">
+						<h2>GENERAL TERMS AND CONDITIONS APPLICABLE FOR USE OF THE
+							ONLINE SEAT RESERVATION SERVICE OF SRI LANKA RAILWAYS.</h2>
+						<p>01. Prior to making a reservation through the Service, you
+							are strongly advised to be vigilant of the following guidelines
+							and comply with the same;</p>
+						<p>Select the correct train for your journey.</p>
+						<p>Fix a convenient date for both up & down journeys.</p>
+						<p>Ensure that you have a thorough understanding of the rates
+							applicable.</p>
+						<p>Maximum of 5 seats could be reserved at once.</p>
+						<p>Standard customer verification and other terms and
+							conditions would apply.</p>
+						<p>NIC numbers of each and every passenger except "DEPENDENT"
+							should be furnished.</p>
+						<p>A reference number along with ticket details will be sent
+							via email to commuters who make the reservation via website
+							and/or mobile app.</p>
+						<p>Commuters are requested to present the booking reference
+							number for ticket printing purposes and notify any enquiries
+							related to their reservation to the railway officer at the
+							counters. Tickets can be printed at any existing ticket printing
+							location of Sri Lanka Railways (Please click Ticket printing
+							locations tab) and it is recommended to get printed the ticket in
+							advance.</p>
+						<p>Passengers must provide the booking reference number along
+							with their NIC or passport in person at the Station Counter and
+							ticket will not be issued to any third party.</p>
+						<p>A reservation only becomes guaranteed once full payment has
+							been received by Sri Lanka Railways.</p>
+						<p>No fresh tickets will be issued in lieu of misplaced or
+							lost tickets.</p>
+						<p>The reserved tickets could be used only for specified
+							trains.</p>
+						<p>Travelling on any other trains by using these types of
+							tickets are strictly prohibited. An ordinary travelling ticket
+							should be purchased for travelling to a transits station to catch
+							a reserved train.</p>
+						<p>All tickets issued through the Service are the property of
+							Sri Lanka Railways. Tickets are non-transferable and should be
+							handed over to the destination station before leaving the station
+							after the journey. Sri Lanka Railways officers have the authority
+							to request and check the tickets at any given moment.</p>
+					</div>
+					<div class="section">
+						<h2>PAYMENT METHODS</h2>
+						<p>You should use a valid VISA or Master Credit/ Debit card
+							when making online reservations through the internet.</p>
+						<h3>Debit/Credit Card, Bank Account Details:</h3>
+						<p>You agree that the debit/credit card details provided by
+							you for use of the Sri Lanka Railways online seat reservation
+							service is correct and accurate and you shall not use a Debit/
+							credit card, that is not lawfully owned by you or the use of
+							which is not authorized by the lawful owner thereof. You further
+							agree and undertake to provide correct and valid debit/credit
+							card details.</p>
+						<p>You agree, understand and confirm that your personal data
+							including without limitation details relating to debit card/
+							credit card transmitted over the Internet may be susceptible to
+							misuse, hacking, theft and/ or fraud and the Sri Lanka Railways
+							or your Payment Service Provider(s) have no control over such
+							matters.</p>
+						<p>The Sri Lanka Railways (including its service providers and
+							suppliers), the Payment Service Provider(s) and its affiliates
+							and associates shall not be liable, at any time, for any failure
+							of performance, error, omission, interruption, deletion, defect,
+							delay in operation or transmission, computer virus,
+							communications line failure, theft or destruction or unauthorized
+							access to, alteration of, or use of information contained on the
+							Website.</p>
+						<p>You warrant, agree and confirm the following when you
+							initiate a payment transaction through the Service and/or issue
+							an online payment instruction and/or provide your card / bank
+							details:</p>
+						<ul>
+							<li>You are fully and lawfully entitled to use such credit /
+								debit card, bank account for such transactions.</li>
+							<li>You are responsible to ensure that the card/ bank
+								account details provided by you are accurate.</li>
+							<li>You authorize debit of the nominated card/ bank account
+								for the payment of fees selected by you.</li>
+							<li>You are responsible to ensure that sufficient credit is
+								available on the nominated card/ bank account at the time of
+								making the payment to permit the payment of the dues payable or
+								fees selected by you.</li>
+							<li>You are responsible for all transactions performed
+								utilizing your credit/debit card and/or bank account.</li>
+						</ul>
+						<p>Server Slow Down/Session Timeout: In case the Website or
+							Payment Service Provider’s webpage, that is linked to the
+							Website, is experiencing any server related issues like 'slow
+							down' or 'failure' or 'session timeout', you shall, before
+							initiating the second payment, check whether your bank account
+							has been debited or not and accordingly resort to one of the
+							following options:</p>
+						<ul>
+							<li>In case the bank account appears to be debited, ensure
+								that you do not make the payment twice and immediately
+								thereafter contact the Sri Lanka Railways via e-mail or any
+								other mode of contact as provided by the Sri Lanka Railways to
+								confirm payment.</li>
+							<li>In case the Bank Account is not debited, you may
+								initiate a fresh transaction to make payment.</li>
+						</ul>
+						<p>However, you agree that under no circumstances the Payment
+							Gateway Service Provider shall be held responsible for such
+							fraudulent/duplicate transactions and hence no claims should be
+							raised to Payment Gateway Service Provider. No communication
+							received by the Payment Service Provider(s) in this regards shall
+							be entertained by the Payment Service Provider(s).</p>
+					</div>
+					<!-- Add more sections as needed -->
+				</div>
 			</div>
 		</div>
 
 	</section>
-	
-	
+
+
 	<!-- Footer -->
-<footer class="text-center text-lg-start bg-white text-muted">
-  <!-- Section: Social media -->
-  <section class="d-flex justify-content-center justify-content-lg-between p-4 border-bottom">
-    <!-- Left -->
-    <div class="me-5 d-none d-lg-block">
-      <span> <!--  Get connected with us on social networks: --></span>
-    </div>
-    <!-- Left -->
+	<footer class="text-center text-lg-start bg-white text-muted">
+		<!-- Section: Social media -->
+		<section
+			class="d-flex justify-content-center justify-content-lg-between p-4 border-bottom">
+			<!-- Left -->
+			<div class="me-5 d-none d-lg-block">
+				<span> <!--  Get connected with us on social networks: --></span>
+			</div>
+			<!-- Left -->
 
-    <!-- Right -->
-    <div>
-      <a href="https://www.facebook.com/watch/live/?ref=search&v=848934929827633" class="me-4 link-secondary">
-        <i class="fab fa-facebook-f"></i>
-      </a>
-      <a href="https://twitter.com/?login" class="me-4 link-secondary">
-        <i class="fab fa-twitter"></i>
-      </a>
-      <a href="https://www.google.com/" class="me-4 link-secondary">
-        <i class="fab fa-google"></i>
-      </a>
-      <a href="https://www.facebook.com/watch/live/?ref=search&v=848934929827633" class="me-4 link-secondary">
-        <i class="fab fa-instagram"></i>
-      </a>
-      <a href="https://www.linkedin.com/?trk=guest_homepage-basic_nav-header-logo" class="me-4 link-secondary">
-        <i class="fab fa-linkedin"></i>
-      </a>
-      <a href="https://github.com/SDP-1?tab=repositories" class="me-4 link-secondary">
-        <i class="fab fa-github"></i>
-      </a>
-    </div>
-    <!-- Right -->
-  </section>
-  <!-- Section: Social media -->
+			<!-- Right -->
+			<div>
+				<a
+					href="https://www.facebook.com/watch/live/?ref=search&v=848934929827633"
+					class="me-4 link-secondary"> <i class="fab fa-facebook-f"></i>
+				</a> <a href="https://twitter.com/?login" class="me-4 link-secondary">
+					<i class="fab fa-twitter"></i>
+				</a> <a href="https://www.google.com/" class="me-4 link-secondary">
+					<i class="fab fa-google"></i>
+				</a> <a
+					href="https://www.facebook.com/watch/live/?ref=search&v=848934929827633"
+					class="me-4 link-secondary"> <i class="fab fa-instagram"></i>
+				</a> <a
+					href="https://www.linkedin.com/?trk=guest_homepage-basic_nav-header-logo"
+					class="me-4 link-secondary"> <i class="fab fa-linkedin"></i>
+				</a> <a href="https://github.com/SDP-1?tab=repositories"
+					class="me-4 link-secondary"> <i class="fab fa-github"></i>
+				</a>
+			</div>
+			<!-- Right -->
+		</section>
+		<!-- Section: Social media -->
 
-  <!-- Section: Links  -->
-  <section class="">
-    <div class="container text-center text-md-start mt-5">
-      <!-- Grid row -->
-      <div class="row mt-3">
-        <!-- Grid column -->
-        <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
-          <!-- Content -->
-          <h6 class="text-uppercase fw-bold mb-4">
-            <i class="fas fa-gem me-3 text-secondary"></i>Welcome to TrainEase
-          </h6>
-          <p>
-            TrainEase is your one-stop destination for hassle-free train reservations. 
-            Say goodbye to long queues and booking complications. With TrainEase, 
-            you can effortlessly book your train tickets, check schedules, 
-            and manage your journey with ease.
-          </p>
-        </div>
+		<!-- Section: Links  -->
+		<section class="">
+			<div class="container text-center text-md-start mt-5">
+				<!-- Grid row -->
+				<div class="row mt-3">
+					<!-- Grid column -->
+					<div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
+						<!-- Content -->
+						<h6 class="text-uppercase fw-bold mb-4">
+							<i class="fas fa-gem me-3 text-secondary"></i>Welcome to
+							TrainEase
+						</h6>
+						<p>TrainEase is your one-stop destination for hassle-free
+							train reservations. Say goodbye to long queues and booking
+							complications. With TrainEase, you can effortlessly book your
+							train tickets, check schedules, and manage your journey with
+							ease.</p>
+					</div>
 
-        
 
-        <!-- Grid column -->
-        <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
-          <!-- Links -->
-          <h6 class="text-uppercase fw-bold mb-4">
-            Useful links
-          </h6>
-          <p>
-            <a href="#!" class="text-reset" onclick="scrollToBookSeatSection('navbar navbar-expand-lg navbar-light bg-white')">Home</a>
-          </p>
-          <p>
-            <a href="#!" class="text-reset" onclick="scrollToBookSeatSection('gallery-section')">Gallery</a>
-          </p>
-          <p>
-            <a href="#!" class="text-reset" onclick="scrollToBookSeatSection('gallary-section')">History</a>
-          </p>
-          <p>
-            <a href="#!" class="text-reset" onclick="scrollToBookSeatSection('Our_Service-section')">Ouer Services</a>
-          </p>
-        </div>
-        <!-- Grid column -->
-        
-        <!-- Grid column -->
-        <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
-          <!-- Links -->
-          <h6 class="text-uppercase fw-bold mb-4">
-            Useful links
-          </h6>
-          <p>
-            <a href="#!" class="text-reset" onclick="scrollToBookSeatSection('contact_us-section')">Contact Us </a>
-          </p>
-          <p>
-            <a href="#!" class="text-reset" onclick="scrollToBookSeatSection('Terms-and-Conditions')">Terms & Conditions</a>
-          </p>
-        </div>
-        <!-- Grid column -->
 
-        <!-- Grid column -->
-        <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
-          <!-- Links -->
-          <h6 class="text-uppercase fw-bold mb-4">Contact</h6>
-          <p><i class="fas fa-home me-3 text-secondary"></i> Baddegama Rd, Hikkaduwa</p>
-          <p>
-            <i class="fas fa-envelope me-3 text-secondary"></i>
-            sehandevinda1@gmail.com
-          </p>
-          <p><i class="fas fa-phone me-3 text-secondary"></i> + 94 772 829 780</p>
-          <p><i class="fas fa-print me-3 text-secondary"></i> + 94 714 688 665</p>
-        </div>
-        <!-- Grid column -->
-      </div>
-      <!-- Grid row -->
-    </div>
-  </section>
-  <!-- Section: Links  -->
+					<!-- Grid column -->
+					<div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
+						<!-- Links -->
+						<h6 class="text-uppercase fw-bold mb-4">Useful links</h6>
+						<p>
+							<a href="#!" class="text-reset"
+								onclick="scrollToBookSeatSection('navbar navbar-expand-lg navbar-light bg-white')">Home</a>
+						</p>
+						<p>
+							<a href="#!" class="text-reset"
+								onclick="scrollToBookSeatSection('gallery-section')">Gallery</a>
+						</p>
+						<p>
+							<a href="#!" class="text-reset"
+								onclick="scrollToBookSeatSection('gallary-section')">History</a>
+						</p>
+						<p>
+							<a href="#!" class="text-reset"
+								onclick="scrollToBookSeatSection('Our_Service-section')">Ouer
+								Services</a>
+						</p>
+					</div>
+					<!-- Grid column -->
 
-  <!-- Copyright -->
-  <div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.025);">
-    © 2021 Copyright:
-    <a class="text-reset fw-bold" href="https://seatreservation.railway.gov.lk/mtktwebslr/"> Sri Lanka Railways (SLR)</a>
-  </div>
-  <!-- Copyright -->
-</footer>
-<!-- Footer -->
+					<!-- Grid column -->
+					<div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
+						<!-- Links -->
+						<h6 class="text-uppercase fw-bold mb-4">Useful links</h6>
+						<p>
+							<a href="#!" class="text-reset"
+								onclick="scrollToBookSeatSection('contact_us-section')">Contact
+								Us </a>
+						</p>
+						<p>
+							<a href="#!" class="text-reset"
+								onclick="scrollToBookSeatSection('Terms-and-Conditions')">Terms
+								& Conditions</a>
+						</p>
+					</div>
+					<!-- Grid column -->
+
+					<!-- Grid column -->
+					<div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
+						<!-- Links -->
+						<h6 class="text-uppercase fw-bold mb-4">Contact</h6>
+						<p>
+							<i class="fas fa-home me-3 text-secondary"></i> Baddegama Rd,
+							Hikkaduwa
+						</p>
+						<p>
+							<i class="fas fa-envelope me-3 text-secondary"></i>
+							sehandevinda1@gmail.com
+						</p>
+						<p>
+							<i class="fas fa-phone me-3 text-secondary"></i> + 94 772 829 780
+						</p>
+						<p>
+							<i class="fas fa-print me-3 text-secondary"></i> + 94 714 688 665
+						</p>
+					</div>
+					<!-- Grid column -->
+				</div>
+				<!-- Grid row -->
+			</div>
+		</section>
+		<!-- Section: Links  -->
+
+		<!-- Copyright -->
+		<div class="text-center p-4"
+			style="background-color: rgba(0, 0, 0, 0.025);">
+			© 2021 Copyright: <a class="text-reset fw-bold"
+				href="https://seatreservation.railway.gov.lk/mtktwebslr/"> Sri
+				Lanka Railways (SLR)</a>
+		</div>
+		<!-- Copyright -->
+	</footer>
+	<!-- Footer -->
 
 
 	<!-- internal Java Script Code -->

@@ -18,6 +18,6 @@ public class LogInUser {
 	}
 	
 	static{
-		userID=1234;
+		userID=0;
 	}
 }

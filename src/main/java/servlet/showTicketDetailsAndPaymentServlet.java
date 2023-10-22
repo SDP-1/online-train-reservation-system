@@ -55,6 +55,7 @@ public class showTicketDetailsAndPaymentServlet extends HttpServlet {
 		 dispatcher = getServletContext() .getRequestDispatcher("/WEB-INF/views/showTicketDetailsAndPayment.jsp");
 		}else {
 			 //redirec to the login page
+			dispatcher = getServletContext() .getRequestDispatcher("/WEB-INF/login.jsp");
 		}
 
 		request.setAttribute("ticketDetails", ticketDetails);

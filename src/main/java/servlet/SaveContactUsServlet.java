@@ -13,6 +13,7 @@ import model.ContactUs;
 import model.LogInUser;
 import util.ContactUsUtill;
 
+
 /**
  * Servlet implementation class SaveContactUsServlet
  */
@@ -41,7 +42,26 @@ public class SaveContactUsServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		String name = request.getParameter("yourName");
+		String email = request.getParameter("yourEmail");
+		String mobile = request.getParameter("yourMobile");
+		String subject = request.getParameter("subject");
+		String message = request.getParameter("message");
+
+		ContactUs contactUs = new ContactUs(name, email, mobile, subject, message);
+
 		
+		//-----------
+		
+		ContactUsUtill.addNewComplane(contactUs);
+		
+		String contextPath = request.getContextPath();
+        response.sendRedirect(contextPath + "/index.jsp");
+
+		//RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/index.jsp");
+
+//		request.setAttribute("reservation", reservation);
+//		dispatcher.forward(request, response);
 		
 	}
 
