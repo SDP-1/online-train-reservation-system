@@ -21,9 +21,14 @@
 <link
 	href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.2/mdb.min.css"
 	rel="stylesheet" />
+	
+<!-- internal CSS -->
+<link rel="stylesheet" href="CSS\home-page-style.css">	
 
 <!-- jQuery -->
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+
+
 
 <!-- Popper.js (required for Bootstrap) -->
 <script
@@ -119,7 +124,7 @@
 					</a>
 					<ul class="dropdown-menu dropdown-menu-end"
 						aria-labelledby="navbarDropdownMenuAvatar">
-						<li><a class="dropdown-item" href="#">My profile</a></li>
+						<li><a class="dropdown-item" href="userProfile.jsp">My profile</a></li>
 						<li><a class="dropdown-item" href="ShowReservation.jsp">My
 								Reservation</a></li>
 						<li><a class="dropdown-item" href="#" id="logout-button">Logout</a>

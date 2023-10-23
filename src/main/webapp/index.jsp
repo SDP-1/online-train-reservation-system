@@ -27,8 +27,7 @@
 </head>
 <script type="text/javascript">
 	if (
-<%=LogInUser.getUserId()%>
-	> 0) {
+<%=LogInUser.getUserId()%> > 0) {
 		var newPageURL = 'indexLogInUser.jsp';
 		window.location.href = newPageURL;
 	}

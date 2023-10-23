@@ -1,17 +1,13 @@
-
-<%@page import="model.LogInUser"%>
-<%@page import="util.ReservationUtil"%>
-<%@page import="model.Reservation"%>
-<%@page import="java.util.ArrayList"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>My Reservations</title>
+<%@page import="com.model.customer.User"%>
+<html lang="en">
 
-<!-- Font Awesome -->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Profile</title>
+    
+        <!-- Font Awesome -->
 <link
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
 	rel="stylesheet" />
@@ -37,41 +33,111 @@
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.2/css/mdb.min.css">
+    
+    <style>
+    
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-image: url('http://localhost:8080/OTRS/image/gallery-4.jpg'); 
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        .container {
+        	background-color: rgba(255, 255, 255, 0.8);
+            max-width: 600px;
+            margin: 20px auto;
+            background-color: blur;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(3px);
+        }
+
+        h2 {
+            text-align: center;
+        }
+
+        form {
+            display: grid;
+            grid-gap: 20px;
+        }
+
+        label {
+            font-weight: bold;
+        }
+
+        input,
+        textarea {
+            width: 100%;
+            padding: 8px;
+            box-sizing: border-box;
+            margin-top: 6px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        button {
+            background-color: #53e458;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        /* Popup container */
+        .popup-container {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            justify-content: center;
+            align-items: center;
+            z-index: 1;
+        }
+
+        /* Popup content */
+        .popup-content {
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .close-btn {
+            background-color: #ccc;
+            color: #333;
+            padding: 8px 12px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-right: 10px;
+        }
+
+        .close-btn:hover {
+            background-color: #999;
+        }
+    </style>
 	
-	<!-- Internal CSS -->
-<link rel="stylesheet" href="CSS\home-page-style.css">
-	
-<style>
-body {
-	background-image:
-		url('https://seatreservation.railway.gov.lk/mtktwebslr/gallery/gallery-2.jpg');
-	background-size: cover;
-}
-
-.container {
-	background-color: rgba(255, 255, 255, 0.8);
-	padding: 20px;
-	border-radius: 10px;
-}
-
-.modal-confirm .modal-content {
-	border-radius: 10px;
-}
-
-.btn-blue {
-	background-color: #007BFF;
-}
-
-.btn-red {
-	background-color: #DC3545;
-}
-</style>
+    
 </head>
+
 <body>
 
 
-
-	<!-- Navbar -->
+<!-- Navbar -->
 	<nav class="navbar navbar-expand-lg navbar-light bg-white">
 		<!-- Container wrapper -->
 		<div class="container-fluid">
@@ -211,162 +277,89 @@ body {
 
 
 
+<%
+   String id=request.getParameter("id");
+   String Name=request.getParameter("name");
+   String email=request.getParameter("email");
+   String number=request.getParameter("phone");
+   String username=request.getParameter("username");
+%>
+
+<%
+    User user = (User) request.getAttribute("user");
+
+    if (user != null) {
+
+     id =  String.valueOf(user.getId()); 
+     Name=  user.getName();
+     email= user.getEmail();
+     number= user.getPhone(); 
+     username= user.getUserName(); 
+
+    }
+%>
 
 
+    <div class="container">
+        <h2>Edit Profile</h2>
+        <form action="editProServlet" method="Post">
+            
+            <label for="id">ID:</label>
+            <input type="text" id="cusid" name="id" value="<%= id%>" readonly>
+            
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" value="<%= Name%>" required>
 
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" value="<%= email%>" required>
 
-	<div class="container mt-5">
-		<h1 class="text-center">My Reservations</h1>
-		<div class="row">
-			<%
-			ArrayList<Reservation> reservations = ReservationUtil.getReservationHistoryOfUser(LogInUser.getUserId());
-			for (Reservation reservation : reservations) {
-			%>
-			<div class="col-md-4">
-				<div class="card mb-4">
-					<div class="card-body">
-						<h4 class="card-title">
-							Reservation
-							<%=reservation.getRecervationNo()%></h4>
-						<p class="card-text">
-							<strong>Train Number:</strong>
-							<%=reservation.getTrain_number()%></p>
-						<p class="card-text">
-							<strong>Train Name:</strong>
-							<%=reservation.getTrainName()%></p>
-						<p class="card-text">
-							<strong>Place/Date:</strong>
-							<%=reservation.getReservationPlaceDate()%></p>
+           
+            <label for="phone">Phone Number:</label>
+            <input type="text" id="phone" name="phone" value="<%= number%>" required>
 
-						<p class="card-text">
-							<strong>Start:</strong>
-							<%=reservation.getStart_point()%></p>
-						<p class="card-text">
-							<strong>End:</strong>
-							<%=reservation.getEnd_point()%></p>
-						<p class="card-text">
-							<strong>Reservation Date:</strong>
-							<%=reservation.getReservation_date()%></p>
-						<p class="card-text">
-							<strong>Passenger Count:</strong>
-							<%=reservation.getPassenger_count()%></p>
+            <label for="username">User Name:</label>
+            <input type="text" id="username" name="username" value="<%= username%>" required>
 
+            <button type="submit">Save Changes</button>
+            <button type="button" onclick="openResetPopup()">Reset Password</button>
+        </form>
+    </div>
 
-						<p class="card-text">
-							<strong>Unit Price:</strong> LKR <%=reservation.getUnitPrice()%></p>
-						<p class="card-text">
-							<strong>Total Price:</strong> LKR <%=reservation.getTotalPrice()%></p>
+    <!-- Popup Container -->
+    <div class="popup-container" id="resetPopup">
+        <!-- Popup Content -->
+        <div class="popup-content">
+            <h2>Reset Password</h2>
+            <form action="resetpwServlet" method="post">
+            <input type="hidden" name="id" value="<%= id %>">
+            
+                <label for="cPassword">Current Password:</label>
+                <input type="password" id="cPassword" name="cPassword" required>
 
+                <label for="newPassword">New Password:</label>
+                <input type="password" id="newPassword" name="newPassword" required>
 
-						<button type="button" class="btn btn-red rounded"
-							data-toggle="modal"
-							data-target="#deleteModal<%=reservation.getRecervationNo()%>">
-							<i class="fas fa-trash-alt"></i> Delete
-						</button>
-					</div>
-				</div>
-			</div>
-			<%
-			}
-			%>
-		</div>
-	</div>
+                <label for="confirmPassword">Confirm Password:</label>
+                <input type="password" id="confirmPassword" name="confirmPassword" required>
 
-	<!-- Include Bootstrap JS and MDB JS -->
-	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-	<script
-		src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
-	<script
-		src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-	<script
-		src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.2/js/mdb.min.js"></script>
+                <button type="submit">Reset Password</button>
+                <button class="close-btn" onclick="closeResetPopup()">Close</button>
+            </form>
+        </div>
+    </div>
 
-	<!-- Font Awesome Icons -->
-	<script src="https://kit.fontawesome.com/a076d05399.js"
-		crossorigin="anonymous"></script>
+    <script>
+        function openResetPopup() {
+            document.getElementById('resetPopup').style.display = 'flex';
+        }
 
-	<script>
-        function confirmDelete(reservationId) {
-            $('#deleteModal' + reservationId).modal('show');
+        function closeResetPopup() {
+            document.getElementById('resetPopup').style.display = 'none';
         }
     </script>
-</body>
-</html>
-
-<%-- Modal Confirmation Dialogs --%>
-<%
-for (Reservation reservation : reservations) {
-%>
-<div class="modal fade"
-	id="deleteModal<%=reservation.getRecervationNo()%>" tabindex="-1"
-	role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
-	<div class="modal-dialog modal-confirm" role="document">
-		<div class="modal-content">
-			<div class="modal-header">
-				<h5 class="modal-title text-primary" id="deleteModalLabel">Confirm
-					Deletion</h5>
-				<button type="button" class="close" data-dismiss="modal"
-					aria-label="Close">
-					<span aria-hidden="true">&times;</span>
-				</button>
-			</div>
-			<div class="modal-body text-center">
-				<p>Are you sure you want to delete this reservation?</p>
-			</div>
-			<div class="modal-footer justify-content-center">
-				<button type="button" class="btn btn-blue" data-dismiss="modal">
-					<i class="fas fa-times"></i> Cancel
-				</button>
-				<button type="button" class="btn btn-red"
-					onclick="deleteReservation(<%=reservation.getRecervationNo()%>, <%=reservation.getPassenger_count()%>, <%=reservation.getTrain_number()%>)">
-					<i class="fas fa-check"></i> Delete
-				</button>
-			</div>
-		</div>
-	</div>
-</div>
-<%
-}
-%>
-<script>
-    function deleteReservation(reservationId, passengerCount, trainID) {
     
-    console.log(reservationId);
-    console.log(passengerCount);
-    console.log(trainID);
-        
-        var form = document.createElement('form');
-		    form.action = 'DeleteReservationServlet'; // Replace with the actual servlet URL
-		    form.method = 'POST';
-		    
-		 // Create hidden input fields for the ticket details
-		 
-		 	var rid = document.createElement('input');
-		 	rid.type = 'hidden';
-		 	rid.name = 'reservationId';
-		    rid.value = reservationId;
-		    form.appendChild(rid);
-		    
-		    var psCount = document.createElement('input');
-		    psCount.type = 'hidden';
-		    psCount.name = 'passengerCount';
-		    psCount.value = passengerCount;
-		    form.appendChild(psCount);
-		   
-		    var trId = document.createElement('input');
-		    trId.type = 'hidden';
-		    trId.name = 'trainID';
-		    trId.value = trainID;
-		    form.appendChild(trId);
-		    
-		    // Append the form to the document and submit it
-		    document.body.appendChild(form);
-		    form.submit();
-    }
-</script>
-
-<script type="text/javascript"
+    <script type="text/javascript"
 	src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.2/mdb.min.js"></script>
-
 </body>
+
 </html>
