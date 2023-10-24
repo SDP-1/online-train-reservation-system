@@ -162,7 +162,7 @@
             <p class="welcome-message"><h3>Welcome to Travel Buddy Online Train Reservation System.</h3> <h6 style="color: #ff9900;">In here, you can register to the system. After Successful registration, you'll be redirected to the login page.</h6></p>
         </div>
         <h2>Create Account</h2>
-        <form action="createAccServlet" method="post" onsubmit="return validateForm()">
+        <form action="UserCreateAccServlet" method="post" onsubmit="return validateForm()">
             <div class="form-group">
                 <label for="fullname">Full Name:</label>
                 <input type="text" id="fullname" name="name" required>

@@ -18,22 +18,21 @@ public class customerDBUtil {
 	private static ResultSet rs = null;
 	
 	
-	public static boolean validate(String userName, String password){
-		boolean loginStatus;
-		loginStatus = false;
+	public static int validate(String userName, String password){
+		int id = 0;
 		try {
 			con = DBConnectionUtil.getDBConnection();
 			stmt = con.createStatement();			
 			String sql = "select * from user where username = '" + userName + "' and password = '" + password + "'";
 			rs = stmt.executeQuery(sql);			
 			if(rs.next()) {
-				loginStatus = true;
-				LogInUser.setUserId(rs.getInt(1));
+				id = rs.getInt(1);
+				//LogInUser.setUserId(rs.getInt(1));
 			}			
 		}catch(Exception e){
 			e.printStackTrace();
 		}		
-		return loginStatus;
+		return id;
 	}
 	
 	public static boolean insertcustomer(String name,String email,String phone,String username,String password) {

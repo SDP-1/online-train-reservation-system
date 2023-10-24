@@ -25,7 +25,7 @@ public class TrainSheduleUtil {
 			connection = DBConnectionUtil.getDBConnection();
 			statement = connection.createStatement();
 			
-			String sql = "SELECT Km FROM train_shedule WHERE (station1 = ? AND station2 = ?) OR (station1 = ? AND station2 = ?)";
+			String sql = "SELECT Km FROM train_schedule WHERE (station1 = ? AND station2 = ?) OR (station1 = ? AND station2 = ?)";
 			PreparedStatement preparedStatement = connection.prepareStatement(sql);
 			preparedStatement.setString(1, startPoint);
 			preparedStatement.setString(2, endPoint);

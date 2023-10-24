@@ -10,7 +10,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import model.ContactUs;
-import model.LogInUser;
 import util.ContactUsUtill;
 
 
