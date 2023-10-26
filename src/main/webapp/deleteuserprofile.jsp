@@ -84,6 +84,8 @@
 
 
 
+
+
 <div class="container">
         <h2>Delete Account</h2>
 
@@ -115,31 +117,19 @@
     </div>
 
     <script>
-        // Get the popup container
-        var popup = document.getElementById('popup');
-
-        // Get the delete button
-        var deleteBtn = document.getElementById('deleteBtn');
-
-        // Get the close and cancel buttons inside the popup
-        var confirmDeleteBtn = document.getElementById('confirmDeleteBtn');
-        var cancelDeleteBtn = document.getElementById('cancelDeleteBtn');
-
-        // Show the popup when delete button is clicked
-        deleteBtn.onclick = function () {
-            popup.style.display = 'flex';
+    
+ // Get the delete button
+    var deleteBtn = document.getElementById('deleteBtn');
+    
+    // Show the confirmation popup when delete button is clicked
+    deleteBtn.onclick = function () {
+        var confirmDelete = confirm("Are you sure you want to delete your account?");
+        if (confirmDelete) {
+            // If the user confirms, submit the form
+            document.forms[0].submit();
         }
+    }
 
-        // Hide the popup when cancel button is clicked
-        cancelDeleteBtn.onclick = function () {
-            popup.style.display = 'none';
-        }
-
-        // Perform delete action when confirm button is clicked (you can replace this with your actual delete logic)
-        confirmDeleteBtn.onclick = function () {
-            alert('Account deleted!');
-            popup.style.display = 'none';
-        }
     </script>
 </body>
 </html>

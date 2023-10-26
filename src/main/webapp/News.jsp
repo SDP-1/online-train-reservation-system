@@ -1,13 +1,11 @@
 <!DOCTYPE html>
-<%@page import="com.model.customer.User"%>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Edit Profile</title>
-    
-        <!-- Font Awesome -->
+    <title>Sri Lanka Railways News</title>
+
+    <!-- Font Awesome -->
 <link
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
 	rel="stylesheet" />
@@ -19,121 +17,39 @@
 <link
 	href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.2/mdb.min.css"
 	rel="stylesheet" />
-
+	
+<!-- internal CSS -->
+<link rel="stylesheet" href="CSS\home-page-style.css">	
 
 <!-- jQuery -->
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 
+
+
 <!-- Popper.js (required for Bootstrap) -->
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-
-<!-- Include Bootstrap CSS and MDB CSS -->
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-<link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.2/css/mdb.min.css">
     
     <style>
-    
         body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-image: url('http://localhost:8080/OTRS/image/gallery-4.jpg'); 
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
+            background-color: #f0f0f0;
         }
-
-        .container {
-        	background-color: rgba(255, 255, 255, 0.8);
-            max-width: 600px;
-            margin: 20px auto;
-            background-color: blur;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-            backdrop-filter: blur(3px);
-        }
-
-        h2 {
-            text-align: center;
-        }
-
-        form {
-            display: grid;
-            grid-gap: 20px;
-        }
-
-        label {
-            font-weight: bold;
-        }
-
-        input,
-        textarea {
-            width: 100%;
-            padding: 8px;
-            box-sizing: border-box;
-            margin-top: 6px;
-            margin-bottom: 10px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-        }
-
-        button {
-            background-color: #53e458;
-            color: white;
-            padding: 10px 15px;
+        .card {
             border: none;
-            border-radius: 4px;
-            cursor: pointer;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
         }
-
-        button:hover {
-            background-color: #45a049;
+        .card-title {
+            font-size: 1.5rem;
         }
-
-        /* Popup container */
-        .popup-container {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.5);
-            justify-content: center;
-            align-items: center;
-            z-index: 1;
+        .card-text {
+            font-size: 1.2rem;
         }
-
-        /* Popup content */
-        .popup-content {
-            background: #fff;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-
-        .close-btn {
-            background-color: #ccc;
-            color: #333;
-            padding: 8px 12px;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            margin-right: 10px;
-        }
-
-        .close-btn:hover {
-            background-color: #999;
+        .card-footer {
+            font-size: 1rem;
         }
     </style>
-	
-    
 </head>
-
 <body>
 
 
@@ -265,100 +181,66 @@
 			</script>
 			<!-- log out conformation model JS end -->
 			
-			
-			
-			
-
 		</div>
 		<!-- Container wrapper -->
 	</nav>
 	<!-- Navbar -->
 
 
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="#">Sri Lanka Railways News</a>
+            </div>
+        </nav>
+    </header>
 
-<%
-   String id=request.getParameter("id");
-   String Name=request.getParameter("name");
-   String email=request.getParameter("email");
-   String number=request.getParameter("phone");
-   String username=request.getParameter("username");
-%>
-
-<%
-    User user = (User) request.getAttribute("user");
-
-    if (user != null) {
-
-     id =  String.valueOf(user.getId()); 
-     Name=  user.getName();
-     email= user.getEmail();
-     number= user.getPhone(); 
-     username= user.getUserName(); 
-
-    }
-%>
-
-
-    <div class="container">
-        <h2>Edit Profile</h2>
-        <form action="editProServlet" method="Post">
-            
-            <label for="id">ID:</label>
-            <input type="text" id="cusid" name="id" value="<%= id%>" readonly>
-            
-            <label for="name">Name:</label>
-            <input type="text" id="name" name="name" value="<%= Name%>" required>
-
-            <label for="email">Email:</label>
-            <input type="email" id="email" name="email" value="<%= email%>" required>
-
-           
-            <label for="phone">Phone Number:</label>
-            <input type="text" id="phone" name="phone" value="<%= number%>" required>
-
-            <label for="username">User Name:</label>
-            <input type="text" id="username" name="username" value="<%= username%>" required>
-
-            <button type="submit">Save Changes</button>
-            <button type="button" onclick="openResetPopup()">Reset Password</button>
-        </form>
-    </div>
-
-    <!-- Popup Container -->
-    <div class="popup-container" id="resetPopup">
-        <!-- Popup Content -->
-        <div class="popup-content">
-            <h2>Reset Password</h2>
-            <form action="resetpwServlet" method="post">
-            <input type="hidden" name="id" value="<%= id %>">
-            
-                <label for="cPassword">Current Password:</label>
-                <input type="password" id="cPassword" name="cPassword" required>
-
-                <label for="newPassword">New Password:</label>
-                <input type="password" id="newPassword" name="newPassword" required>
-
-                <label for="confirmPassword">Confirm Password:</label>
-                <input type="password" id="confirmPassword" name="confirmPassword" required>
-
-                <button type="submit">Reset Password</button>
-                <button class="close-btn" onclick="closeResetPopup()">Close</button>
-            </form>
+    
+    <div class="container mt-4">
+        <div class="row">
+            <div class="col-md-8">
+                <div class="card mb-4">
+                    <img class="card-img-top" src="https://opportunitysrilanka.com/wp-content/uploads/2019/03/Sri-Lankan-government-proposals-in-Budget-2019-aimed-at-attracting-more-investments-to-the-country-01.png" alt="Government Investment Image">
+                    <div class="card-body">
+                        <h2 class="card-title">Government Announces Major Investment in Sri Lankan Railways</h2>
+                        <p class="card-text">The Sri Lankan government has revealed plans to invest heavily in the country's railway infrastructure. This initiative aims to improve the efficiency and safety of rail transport across the island nation.</p>
+                    </div>
+                    <div class="card-footer text-muted">
+                        Published on October 25, 2023
+                    </div>
+                </div>
+                <div class="card mb-4">
+                    <img class="card-img-top" src="https://th.bing.com/th/id/R.b14ebed979c1fa6469ab452ad7be659d?rik=OQT4CUTso6ecAg&riu=http%3a%2f%2fnews.xinhuanet.com%2fenglish%2f2017-09%2f21%2f136626761_15060036881351n.jpg&ehk=ZO%2f2jiR1Xz86LT%2fG5ebQAFi2nUJL%2bNBqWJ0UEBCVS9Q%3d&risl=&pid=ImgRaw&r=0" alt="High-Speed Rail Line Image">
+                    <div class="card-body">
+                        <h2 class="card-title">New High-Speed Rail Line Connects Colombo and Kandy</h2>
+                        <p class="card-text">In a significant development for commuters, a new high-speed rail line has been inaugurated, connecting the capital city of Colombo to the scenic city of Kandy. This modern rail link will reduce travel time and provide a more comfortable journey for passengers.</p>
+                    </div>
+                    <div class="card-footer text-muted">
+                        Published on October 25, 2023
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <h5 class="card-title">Latest News</h5>
+                        <ul class="list-group">
+                            <li class="list-group-item">Improved Safety Measures Implemented on Sri Lankan Railways</li>
+                            <li class="list-group-item">New Railway Station Opens in Galle</li>
+                            <!-- Add more news headlines here -->
+                        </ul>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
-    <script>
-        function openResetPopup() {
-            document.getElementById('resetPopup').style.display = 'flex';
-        }
-
-        function closeResetPopup() {
-            document.getElementById('resetPopup').style.display = 'none';
-        }
-    </script>
-    
+    <!-- Add Bootstrap and MDB JavaScript -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.21.0/js/mdb.min.js"></script>
     <script type="text/javascript"
-	src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.2/mdb.min.js"></script>
+		src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.2/mdb.min.js"></script>
 </body>
-
 </html>

@@ -81,7 +81,7 @@
 					<li class="nav-item"><a class="nav-link" href="#"
 						onclick="scrollToBookSeatSection('gallary-section')">History</a></li>
 					<li class="nav-item"><a class="nav-link" href="#"
-						onclick="scrollToBookSeatSection('Our_Service-section')">Ouer
+						onclick="scrollToBookSeatSection('Our_Service-section')">Our
 							Services</a></li>
 					<li class="nav-item"><a class="nav-link" href="#"
 						onclick="scrollToBookSeatSection('contact_us-section')">Contact
@@ -108,9 +108,8 @@
 					</a>
 					<ul class="dropdown-menu dropdown-menu-end"
 						aria-labelledby="navbarDropdownMenuLink">
-						<li><a class="dropdown-item" href="#">Some news</a></li>
+						<li><a class="dropdown-item" href="News.jsp">Some news</a></li>
 						<li><a class="dropdown-item" href="#">Another news</a></li>
-						<li><a class="dropdown-item" href="#">Something else here</a>
 						</li>
 					</ul>
 				</div>
@@ -160,38 +159,6 @@
 
 			<!-- log out conformation model end -->
 
-			<!-- log out conformation model JS -->
-			<script>
-				// When the Logout button is clicked, show the confirmation modal
-				document.getElementById('logout-button').addEventListener(
-						'click', function() {
-							$('#logoutModal').modal('show');
-						});
-
-				// When the confirmation modal's Yes button is clicked, log out and redirect
-				document.getElementById('confirm-logout').addEventListener(
-						'click', function() {
-							var form = document.createElement('form');
-						    form.action = 'LogOutServlet'; // Replace with the actual servlet URL
-						    form.method = 'POST';
-
-						    // Append the form to the document and submit it
-						    document.body.appendChild(form);
-						    form.submit();
-							
-						});
-
-				document.getElementById('close').addEventListener('click',
-						function() {
-							$('#logoutModal').modal('hide');
-						});
-
-				document.getElementById('cancel-logout').addEventListener(
-						'click', function() {
-							$('#logoutModal').modal('hide');
-						});
-			</script>
-			<!-- log out conformation model JS end -->
 
 
 
@@ -355,18 +322,15 @@
 							</select>
 						</div>
 
-						<!-- Date Picker -->
-
 						<div class="form-component" style="margin-left: 30px;">
-							<label for="">Date</label>
+							<label for="recevation-date">Date</label>
 							<div id="select-date">
 								<input type="date" id="recevation-date" name="recevation-date"
 									required>
 							</div>
+							<div id="date-error-message" style="color: red;"></div>
 						</div>
 
-						<!-- link date picker style sheet -->
-						<link rel="stylesheet" href="CSS\date-picker-style.css">
 
 					</div>
 
@@ -380,7 +344,7 @@
 						</div>
 
 						<div class="form-check form-switch"
-							style="margin-top: 40px; margin-left: 20%;">
+							style="margin-top: 40px; margin-left: 20%;" hidden>
 							<input class="form-check-input" type="checkbox" role="switch"
 								id="flexSwitchCheckDefault" name="flexSwitchCheckDefault">
 							<label class="form-check-label" for="flexSwitchCheckDefault">Return</label>
@@ -402,7 +366,7 @@
 						style="display: flex; justify-content: right;">
 						<button type="button" class="btn btn-primary reset-btn"
 							onclick="resetSearch()" style="margin: 5px;">Reset</button>
-						<button type="submit" class="btn btn-primary search-btn"
+						<button type="submit" class="btn btn-primary search-btn" id="searchButton"
 							style="margin: 5px;">Search</button>
 					</div>
 				</form>

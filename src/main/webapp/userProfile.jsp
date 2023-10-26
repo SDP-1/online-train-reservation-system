@@ -256,9 +256,8 @@ header {
 					</a>
 					<ul class="dropdown-menu dropdown-menu-end"
 						aria-labelledby="navbarDropdownMenuLink">
-						<li><a class="dropdown-item" href="#">Some news</a></li>
+						<li><a class="dropdown-item" href="#">News.jsp</a></li>
 						<li><a class="dropdown-item" href="#">Another news</a></li>
-						<li><a class="dropdown-item" href="#">Something else here</a>
 						</li>
 					</ul>
 				</div>

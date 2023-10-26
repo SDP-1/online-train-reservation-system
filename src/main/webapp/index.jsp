@@ -1,4 +1,3 @@
-
 <%@page import="model.LogInUser"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
@@ -28,7 +27,8 @@
 </head>
 <script type="text/javascript">
 	if (
-<%=LogInUser.getUserId()%> > 0) {
+<%=LogInUser.getUserId()%>
+	> 0) {
 		var newPageURL = 'indexLogInUser.jsp';
 		window.location.href = newPageURL;
 	}
@@ -66,7 +66,7 @@
 					<li class="nav-item"><a class="nav-link" href="#"
 						onclick="scrollToBookSeatSection('gallary-section')">History</a></li>
 					<li class="nav-item"><a class="nav-link" href="#"
-						onclick="scrollToBookSeatSection('Our_Service-section')">Ouer
+						onclick="scrollToBookSeatSection('Our_Service-section')">Our
 							Services</a></li>
 					<li class="nav-item"><a class="nav-link" href="#"
 						onclick="scrollToBookSeatSection('contact_us-section')">Contact
@@ -88,8 +88,8 @@
 					<button type="button" class="btn btn-link px-3 me-2"
 						onclick="window.location.href = 'login.jsp'">Login</button>
 					<button type="button" class="btn btn-primary me-3"
-						onclick="window.location.href = 'createAccount.jsp'">Sign up for
-						free</button>
+						onclick="window.location.href = 'createAccount.jsp'">Sign
+						up for free</button>
 				</div>
 
 
@@ -258,15 +258,16 @@
 						<!-- Date Picker -->
 
 						<div class="form-component" style="margin-left: 30px;">
-							<label for="">Date</label>
+							<label for="recevation-date">Date</label>
 							<div id="select-date">
 								<input type="date" id="recevation-date" name="recevation-date"
 									required>
 							</div>
+							<div id="date-error-message" style="color: red;"></div>
 						</div>
 
-						<!-- link date picker style sheet -->
-						<link rel="stylesheet" href="CSS\date-picker-style.css">
+
+
 
 					</div>
 
@@ -280,7 +281,7 @@
 						</div>
 
 						<div class="form-check form-switch"
-							style="margin-top: 40px; margin-left: 20%;">
+							style="margin-top: 40px; margin-left: 20%;" hidden>
 							<input class="form-check-input" type="checkbox" role="switch"
 								id="flexSwitchCheckDefault" name="flexSwitchCheckDefault">
 							<label class="form-check-label" for="flexSwitchCheckDefault">Return</label>
@@ -302,7 +303,7 @@
 						style="display: flex; justify-content: right;">
 						<button type="button" class="btn btn-primary reset-btn"
 							onclick="resetSearch()" style="margin: 5px;">Reset</button>
-						<button type="submit" class="btn btn-primary search-btn"
+						<button type="submit" class="btn btn-primary search-btn" id="searchButton"
 							style="margin: 5px;">Search</button>
 					</div>
 				</form>
